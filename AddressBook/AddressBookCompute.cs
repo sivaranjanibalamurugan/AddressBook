@@ -32,6 +32,20 @@ namespace AddressBook
             }
         }
 
+
+        //Delete the particular object
+        public void DeleteContact(string name)
+        {
+            foreach (ContactDetails contact in this.contactList)
+            {
+                if (contact.firstName.Equals(name))
+                {
+                    this.contactList.Remove(contact);
+                    break;
+                }
+            }
+        }
+
         public void EditContact(string name, long number)
         {
             //checks for every object whether the name is equal the given name
@@ -44,6 +58,7 @@ namespace AddressBook
                 }
             }
         }
+
 
 
     }
