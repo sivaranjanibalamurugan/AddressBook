@@ -10,7 +10,7 @@ namespace AddressBook
  
                 //calling operation management class that contains operation
                 
-                Operations.AddDetails();
+                Operations.ReadInput();
                 Console.Read();
             
         }
