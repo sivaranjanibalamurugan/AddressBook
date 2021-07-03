@@ -2,12 +2,18 @@
 
 namespace AddressBook
 {
-    class AddressBook
+    class Program
     {
         static void Main(string[] args)
         {
             Console.WriteLine("Welcome to address book program!");
-            Console.Read();
+ 
+                //calling operation management class that contains operation
+                
+                Operations.AddDetails();
+                Console.Read();
+            
         }
     }
 }
+
