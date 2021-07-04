@@ -9,6 +9,7 @@ namespace AddressBook
     class AddressBookCompute
     {
 
+
         private LinkedList<ContactDetails> contactList;
 
         //creates the object linked list 
@@ -24,7 +25,7 @@ namespace AddressBook
             this.contactList.AddLast(contactDetails);
         }
 
-        //calls the displao
+        //calls the display method
         public void DisplayContact()
         {
             foreach (ContactDetails contact in this.contactList)
@@ -64,5 +65,7 @@ namespace AddressBook
     }
 
 }
+
+
 
 
