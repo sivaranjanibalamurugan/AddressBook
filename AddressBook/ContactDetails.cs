@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace AddressBook
 {
     class ContactDetails
-    { 
+    {
         public string firstName;
         public string lastName;
         public string address;
@@ -39,12 +39,12 @@ namespace AddressBook
             Console.WriteLine("phone number:{0}", this.phoneNumber);
 
         }
+
         //method sets the value 
         public void SetDetail(long number)
         {
             this.phoneNumber = number;
         }
-
 
     }
 }
