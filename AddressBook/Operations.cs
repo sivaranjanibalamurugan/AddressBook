@@ -36,10 +36,10 @@ namespace AddressBook
                 Console.WriteLine("4.Edit Details");
                 Console.WriteLine("5.Delete the contact");
                 Console.WriteLine("6.Delete the address book");
-                Console.WriteLine("0.Exit");
+                Console.WriteLine("7.Exit");
                 int choice = Convert.ToInt32(Console.ReadLine());
 
-                //select which method has to be invoked
+                //select choice
                 switch (choice)
                 {
                     case 1:
@@ -52,34 +52,66 @@ namespace AddressBook
 
 
                     case 2:
-                        //calling the AddDetails method by passing the address of the Address book compute
-                        AddDetails(operation.BookName(addressDictionary));
+                        try
+                        {
+                            //calling the AddDetails method
+                            AddDetails(operation.BookName(addressDictionary));
+                        }
+                        catch (ArgumentNullException e)
+                        {
+                            Console.WriteLine(e.Message);
+                        }
                         break;
 
                     case 3:
                         //display the details in particular dictionary
                         book = operation.BookName(addressDictionary);
-                        book.DisplayContact();
+                        if (book != null)
+                        {
+                            book.DisplayContact();
+                        }
+                        else
+                        {
+                            Console.WriteLine("No such book name is available");
+                        }
                         break;
 
                     case 4:
 
-                        book = operation.BookName(addressDictionary);
-                        //gets input from the user such as name and number that has to be changed
-                        Console.WriteLine("Enter the first name of person to edit number:");
-                        name = Console.ReadLine();
-                        Console.Write("Enter the new number:");
-                        long number = Convert.ToInt64(Console.ReadLine());
-                        //calling edit contact method
-                        book.EditContact(name, number);
+                        try
+                        {
+                            book = operation.BookName(addressDictionary);
+                            //gets input from the user such as name and number that has to be changed
+                            Console.WriteLine("Enter the first name of person to edit number:");
+                            name = Console.ReadLine();
+                            Console.Write("Enter the new number:");
+                            long number = Convert.ToInt64(Console.ReadLine());
+                            //calling edit contact method
+                            book.EditContact(name, number);
+                        }
+                        catch (NullReferenceException e)
+                        {
+                            Console.WriteLine("No dictionary available");
+                        }
+                        catch (FormatException)
+                        {
+                            Console.WriteLine("Enter valid input");
+                        }
                         break;
 
                     case 5:
-                        book = operation.BookName(addressDictionary);
-                        //Deleting the user contact with first name
-                        Console.WriteLine("Enter the name to delete contact:");
-                        name = Console.ReadLine();
-                        book.DeleteContact(name);
+                        try
+                        {
+                            book = operation.BookName(addressDictionary);
+                            //Deleting the user contact with first name
+                            Console.WriteLine("Enter the name to delete contact:");
+                            name = Console.ReadLine();
+                            book.DeleteContact(name);
+                        }
+                        catch (NullReferenceException)
+                        {
+                            Console.WriteLine("Address book is not available");
+                        }
                         break;
 
                     case 6:
@@ -89,7 +121,7 @@ namespace AddressBook
                         addressDictionary.Remove(Name);
                         break;
 
-                    case 0:
+                    case 7:
                         CONTINUE = false;
                         break;
 
@@ -102,32 +134,58 @@ namespace AddressBook
         //gets the user detail from the user
         public static void AddDetails(AddressBookCompute addressBookCompute)
         {
-            Console.WriteLine("Enter first Name");
-            string firstName = Console.ReadLine();
-            Console.WriteLine("Enter Last Name");
-            string lastName = Console.ReadLine();
-            Console.WriteLine("Enter Address");
-            string address = Console.ReadLine();
-            Console.WriteLine("Enter City");
-            string city = Console.ReadLine();
-            Console.WriteLine("Enter State");
-            string state = Console.ReadLine();
-            Console.WriteLine("Enter Zipcode");
-            long zipCode = Convert.ToInt64(Console.ReadLine());
-            Console.WriteLine("Enter Phone Number");
-            long phoneNumber = Convert.ToInt64(Console.ReadLine());
-            //passing the details to add contact detail method
-            addressBookCompute.AddContactDetails(firstName, lastName, address, city, state, zipCode, phoneNumber);
+            try
+            {
+                Console.WriteLine("Enter first Name");
+                string firstName = Console.ReadLine();
+                Console.WriteLine("Enter Last Name");
+                string lastName = Console.ReadLine();
+                Console.WriteLine("Enter Address");
+                string address = Console.ReadLine();
+                Console.WriteLine("Enter City");
+                string city = Console.ReadLine();
+                Console.WriteLine("Enter State");
+                string state = Console.ReadLine();
+                Console.WriteLine("Enter Zipcode");
+                long zipCode = Convert.ToInt64(Console.ReadLine());
+                Console.WriteLine("Enter Phone Number");
+                long phoneNumber = Convert.ToInt64(Console.ReadLine());
+                //passing the details to add contact detail method
+                addressBookCompute.AddContactDetails(firstName, lastName, address, city, state, zipCode, phoneNumber);
+                
+            }
+            // exception when the object is null 
+            catch (NullReferenceException aE)
+            {
+                Console.WriteLine("No Address book is available {0} ", aE.Message);
+            }
+            //catches when the user input the invalid data
+            catch (FormatException e)
+            {
+                Console.WriteLine("Detail entered is not in correct format");
+            }
         }
 
-        //method to find the address of particular address book 
+       //method to find the address of particular address book 
         public AddressBookCompute BookName(Dictionary<string, AddressBookCompute> adBook)
         {
-            this.addressDictionary = adBook;
+            //enter the name of address book
             Console.WriteLine("Enter address book name:");
+            AddressBookCompute address;
             string Name = Console.ReadLine();
-            AddressBookCompute address = this.addressDictionary[Name];
-            return address;
+            //checks whether the adress book contains the record or not 
+            try
+            {
+                address = adBook[Name];
+                //return the address of particular  book
+                return address;
+
+            }
+            catch (KeyNotFoundException e)
+            {
+                Console.WriteLine(e.Message);
+                return default;
+            }
 
         }
     }
