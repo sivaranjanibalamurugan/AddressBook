@@ -8,9 +8,8 @@ namespace AddressBook
 {
     class AddressBookCompute
     {
-
-
         private LinkedList<ContactDetails> contactList;
+        bool AVAILABLE = false;
 
         //creates the object linked list 
         public AddressBookCompute()
@@ -25,7 +24,7 @@ namespace AddressBook
             this.contactList.AddLast(contactDetails);
         }
 
-        //calls the display method
+        // the display method
         public void DisplayContact()
         {
             foreach (ContactDetails contact in this.contactList)
@@ -38,6 +37,7 @@ namespace AddressBook
         //Delete the particular object
         public void DeleteContact(string name)
         {
+            AVAILABLE = false;
             foreach (ContactDetails contact in this.contactList)
             {
                 if (contact.firstName.Equals(name))
@@ -46,11 +46,16 @@ namespace AddressBook
                     break;
                 }
             }
+            if (!AVAILABLE)
+            {
+                Console.WriteLine("{0} such records arenot available in this address book", name);
+            }
         }
 
         public void EditContact(string name, long number)
         {
-            //checks for every object whether the name is equal the given name
+            AVAILABLE = false;
+            //checks for every object whether the name is equal to  the given name
             foreach (ContactDetails contact in this.contactList)
             {
                 if (contact.firstName.Equals(name))
@@ -59,6 +64,11 @@ namespace AddressBook
                     contact.SetDetail(number);
                 }
             }
+            if (!AVAILABLE)
+            {
+                Console.WriteLine("{0} such records arenot available in this address book", name);
+            }
+
         }
 
 
