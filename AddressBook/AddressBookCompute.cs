@@ -9,6 +9,8 @@ namespace AddressBook
     class AddressBookCompute
     {
         private LinkedList<ContactDetails> contactList;
+        private List<ContactDetails> stateList;
+        private List<ContactDetails> cityList;
         bool AVAILABLE = false;
 
         //creates the object linked list 
@@ -18,13 +20,51 @@ namespace AddressBook
         }
 
         //this method add details to the address book
-        public void AddContactDetails(string firstName, string lastName, string address, string city, string state, long zipCode, long phoneNumber)
+        public void AddContactDetails(string firstName, string lastName, string address, string city, string state, long zipCode, long phoneNumber, Dictionary<string, List<ContactDetails>>stateDic, Dictionary<string, List<ContactDetails>> cityDic)
         {
-            ContactDetails contactDetails = new ContactDetails(firstName, lastName, address, city, state, zipCode, phoneNumber);
-            this.contactList.AddLast(contactDetails);
+            //find the data that already has the same value 
+            ContactDetails details = this.contactList.Find(x => x.firstName.Equals(firstName));
+
+            //if no sush record is available then add the data
+            if (details == null)
+            {
+                ContactDetails contactDetails = new ContactDetails(firstName, lastName, address, city, state, zipCode, phoneNumber);
+                this.contactList.AddFirst(contactDetails);
+                if (!stateDic.ContainsKey(state))
+                {
+
+                    stateList = new List<ContactDetails>();
+                    stateList.Add(contactDetails);
+                    stateDic.Add(state, stateList);
+                }
+                else
+                {
+                    List<ContactDetails> c = stateDic[state];
+                    c.Add(contactDetails);
+                }
+                if (!cityDic.ContainsKey(city))
+                {
+
+                    cityList = new List<ContactDetails>();
+                    cityList.Add(contactDetails);
+                    cityDic.Add(city, cityList);
+                }
+                else
+                {
+                    List<ContactDetails> c = cityDic[city];
+                    c.Add(contactDetails);
+                }
+            }
+            //else print record is already available
+            else
+            {
+                Console.WriteLine("record with same name as {0} is available in the address book", firstName);
+            }
+
+
         }
 
-        // the display method
+        //calls the display method
         public void DisplayContact()
         {
             foreach (ContactDetails contact in this.contactList)
@@ -32,57 +72,56 @@ namespace AddressBook
                 contact.Display();
             }
         }
-
-
         //Delete the particular object
         public void DeleteContact(string name)
         {
-            AVAILABLE = false;
-            foreach (ContactDetails contact in this.contactList)
+            try
             {
-                if (contact.firstName.Equals(name))
-                {
-                    this.contactList.Remove(contact);
-                    break;
-                }
+                this.contactList.Remove(this.contactList.Find(x => x.firstName.Equals(name)));
             }
-            if (!AVAILABLE)
+            catch (Exception e)
             {
-                Console.WriteLine("{0} such records arenot available in this address book", name);
+                Console.WriteLine("{0}'s record is not avaliable");
             }
         }
 
         public void EditContact(string name, long number)
         {
             AVAILABLE = false;
-            //checks for every object whether the name is equal to  the given name
+            //checks for every object whether the name is equal the given name
             foreach (ContactDetails contact in this.contactList)
             {
                 if (contact.firstName.Equals(name))
                 {
                     //calls the setdetail method
                     contact.SetDetail(number);
+                    AVAILABLE = true;
+                    break;
                 }
             }
             if (!AVAILABLE)
             {
-                Console.WriteLine("{0} such records arenot available in this address book", name);
+                Console.WriteLine("{0} record not available in the address book", name);
             }
 
         }
-        public static void DisplayPerson(Dictionary<string, AddressBookCompute> addressDictionary)
+
+        //method to find the record of persons in particular state or city
+        public static void FindPerson(Dictionary<string, AddressBookCompute> addressDictionary)
         {
             List<ContactDetails> list = null;
-            
-            string LCName;
+            string SCName;
+            //get input from the user
             Console.WriteLine("Enter City or State name:");
-            LCName = Console.ReadLine();
+            SCName = Console.ReadLine();
             foreach (var l in addressDictionary)
             {
-                AddressBookCompute address = l.Value;
-                list = address.contactList.FindAll(X => x.city.Equals(LCName) || x.state.Equals(LCName));
+                //in each address book
+                //find all the record with particular state or city value and store it in the new list
+                list = l.Value.contactList.FindAll(x => x.city.Equals(SCName) || x.state.Equals(SCName));
                 if (list.Count > 0)
                 {
+                    //if list contatins value display the list
                     DisplayList(list);
                 }
             }
@@ -96,11 +135,18 @@ namespace AddressBook
             }
         }
 
-
+        public static void PrintList(Dictionary<string, List<ContactDetails>> Dic)
+        {
+            foreach (var l in Dic)
+            {
+                Console.WriteLine("Details of person in {0} is", l.Key);
+                foreach (var l1 in l.Value)
+                {
+                    Console.WriteLine("{0} {1}", l1.firstName, l1.lastName);
+                }
+                Console.WriteLine("===================================");
+            }
+        }
     }
-
 }
-
-
-
 
