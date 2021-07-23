@@ -36,7 +36,8 @@ namespace AddressBook
                 Console.WriteLine("4.Edit Details");
                 Console.WriteLine("5.Delete the contact");
                 Console.WriteLine("6.Delete the address book");
-                Console.WriteLine("7.Exit");
+                Console.WriteLine("7.Display the person by city or state");
+                Console.WriteLine("8.Exit");
                 int choice = Convert.ToInt32(Console.ReadLine());
 
                 //select choice
@@ -115,13 +116,17 @@ namespace AddressBook
                         break;
 
                     case 6:
-                        //deleting the entire adress book
+                        //deleting the entire address book
                         Console.WriteLine("Enter address book name to delete:");
                         string Name = Console.ReadLine();
                         addressDictionary.Remove(Name);
                         break;
 
                     case 7:
+                        AddressBookCompute.DisplayPerson(addressDictionary);                       
+                        break;
+
+                    case 8:
                         CONTINUE = false;
                         break;
 
@@ -160,7 +165,7 @@ namespace AddressBook
                 Console.WriteLine("No Address book is available {0} ", aE.Message);
             }
             //catches when the user input the invalid data
-            catch (FormatException e)
+            catch (FormatException )
             {
                 Console.WriteLine("Detail entered is not in correct format");
             }

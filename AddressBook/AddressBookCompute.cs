@@ -70,6 +70,31 @@ namespace AddressBook
             }
 
         }
+        public static void DisplayPerson(Dictionary<string, AddressBookCompute> addressDictionary)
+        {
+            List<ContactDetails> list = null;
+            
+            string LCName;
+            Console.WriteLine("Enter City or State name:");
+            LCName = Console.ReadLine();
+            foreach (var l in addressDictionary)
+            {
+                AddressBookCompute address = l.Value;
+                list = address.contactList.FindAll(X => x.city.Equals(LCName) || x.state.Equals(LCName));
+                if (list.Count > 0)
+                {
+                    DisplayList(list);
+                }
+            }
+
+        }
+        public static void DisplayList(List<ContactDetails> l)
+        {
+            foreach (var data in l)
+            {
+                data.Display();
+            }
+        }
 
 
     }
