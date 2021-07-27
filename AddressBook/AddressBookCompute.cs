@@ -93,7 +93,7 @@ namespace AddressBook
             {
                 if (contact.firstName.Equals(name))
                 {
-                    //calls the setdetail method
+                    //calls the set detail method
                     contact.SetDetail(number);
                     AVAILABLE = true;
                     break;
@@ -110,15 +110,15 @@ namespace AddressBook
         public static void FindPerson(Dictionary<string, AddressBookCompute> addressDictionary)
         {
             List<ContactDetails> list = null;
-            string SCName;
+            string LCName;
             //get input from the user
             Console.WriteLine("Enter City or State name:");
-            SCName = Console.ReadLine();
+            LCName = Console.ReadLine();
             foreach (var l in addressDictionary)
             {
                 //in each address book
                 //find all the record with particular state or city value and store it in the new list
-                list = l.Value.contactList.FindAll(x => x.city.Equals(SCName) || x.state.Equals(SCName));
+                list = l.Value.contactList.FindAll(x => x.city.Equals(LCName) || x.state.Equals(LCName));
                 if (list.Count > 0)
                 {
                     //if list contatins value display the list
@@ -144,9 +144,17 @@ namespace AddressBook
                 {
                     Console.WriteLine("{0} {1}", l1.firstName, l1.lastName);
                 }
-                Console.WriteLine("===================================");
+
             }
         }
+        public static void CountOfPersons(Dictionary<string, List<ContactDetails>> Dic)
+        {
+            foreach (var l in Dic)
+            {
+                Console.WriteLine("Total number of person in {0} is: {1}", l.Key, l.Value.Count);
+            }
+        }
+        
     }
 }
 
