@@ -44,7 +44,8 @@ namespace AddressBook
                 Console.WriteLine("8.Grouping the persons based on city or state");
                 Console.WriteLine("9.Total number of person in each city and state");
                 Console.WriteLine("10.Sort the address book using key");
-                Console.WriteLine("11.Exit");
+                Console.WriteLine("11.Sorting data based on City state or zipcode");
+                Console.WriteLine("12.Exit");
                 int choice = Convert.ToInt32(Console.ReadLine());
 
                 //select choice
@@ -155,6 +156,11 @@ namespace AddressBook
                         break;
 
                     case 11:
+                        //displaying the sorted records based on city,state,zipcode
+                        AddressBookCompute.SortData(cityDic);
+                        break;
+
+                    case 12:
                         CONTINUE = false;
                         break;
 

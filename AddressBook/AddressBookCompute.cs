@@ -20,10 +20,13 @@ namespace AddressBook
         }
 
         //this method add details to the address book
-        public void AddContactDetails(string firstName, string lastName, string address, string city, string state, long zipCode, long phoneNumber, Dictionary<string, List<ContactDetails>>stateDic, Dictionary<string, List<ContactDetails>> cityDic)
+        public void AddContactDetails(string firstName, string lastName, string address, string city, string state, long zipCode, long phoneNumber, Dictionary<string, List<ContactDetails>> stateDic, Dictionary<string, List<ContactDetails>> cityDic)
         {
             //find the data that already has the same value 
-            ContactDetails details = this.contactList.Find(x => x.firstName.Equals(firstName));
+            ContactDetails details = this.contactList.Find(
+                
+                
+                x => x.firstName.Equals(firstName));
 
             //if no sush record is available then add the data
             if (details == null)
@@ -154,7 +157,40 @@ namespace AddressBook
                 Console.WriteLine("Total number of person in {0} is: {1}", l.Key, l.Value.Count);
             }
         }
-        
+        public static void SortData(Dictionary<string, List<ContactDetails>> Dic)
+        {
+            //store the result inthe list and display the result
+            List<ContactDetails> list = new List<ContactDetails>();
+            foreach (var d in Dic)
+            {
+                foreach (var i in d.Value)
+                {
+                    list.Add(i);
+                }
+            }
+           
+            Console.WriteLine("\nDisplaying the list based on zipcode");
+            //display the sorted value based on city
+            foreach (var i in list.OrderBy(detail => detail.zipCode))
+            {
+                i.Display();
+            }
+          
+            Console.WriteLine("\nDisplaying the list based on state");
+            //display the sorted value based on city
+            foreach (var i in list.OrderBy(detail => detail.state))
+            {
+                i.Display();
+            }
+           
+            Console.WriteLine("\nDisplaying the list based on city");
+            //display the sorted value based on city
+            foreach (var i in list.OrderBy(detail => detail.city))
+            {
+                i.Display();
+            }
+
+        }
     }
 }
 
