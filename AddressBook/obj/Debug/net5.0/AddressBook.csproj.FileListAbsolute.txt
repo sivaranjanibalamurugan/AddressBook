@@ -14,3 +14,15 @@ C:\Users\user\source\repos\AddressBook\AddressBook\obj\Debug\net5.0\AddressBook.
 C:\Users\user\source\repos\AddressBook\AddressBook\obj\Debug\net5.0\ref\AddressBook.dll
 C:\Users\user\source\repos\AddressBook\AddressBook\obj\Debug\net5.0\AddressBook.pdb
 C:\Users\user\source\repos\AddressBook\AddressBook\obj\Debug\net5.0\AddressBook.genruntimeconfig.cache
+C:\Users\user\source\repos\AddressBook\AddressBook\bin\Debug\net5.0\CsvHelper.dll
+C:\Users\user\source\repos\AddressBook\AddressBook\bin\Debug\net5.0\Microsoft.Extensions.Configuration.dll
+C:\Users\user\source\repos\AddressBook\AddressBook\bin\Debug\net5.0\Microsoft.Extensions.Configuration.Abstractions.dll
+C:\Users\user\source\repos\AddressBook\AddressBook\bin\Debug\net5.0\Microsoft.Extensions.Configuration.FileExtensions.dll
+C:\Users\user\source\repos\AddressBook\AddressBook\bin\Debug\net5.0\Microsoft.Extensions.Configuration.Json.dll
+C:\Users\user\source\repos\AddressBook\AddressBook\bin\Debug\net5.0\Microsoft.Extensions.Configuration.UserSecrets.dll
+C:\Users\user\source\repos\AddressBook\AddressBook\bin\Debug\net5.0\Microsoft.Extensions.FileProviders.Abstractions.dll
+C:\Users\user\source\repos\AddressBook\AddressBook\bin\Debug\net5.0\Microsoft.Extensions.FileProviders.Physical.dll
+C:\Users\user\source\repos\AddressBook\AddressBook\bin\Debug\net5.0\Microsoft.Extensions.FileSystemGlobbing.dll
+C:\Users\user\source\repos\AddressBook\AddressBook\bin\Debug\net5.0\Microsoft.Extensions.Primitives.dll
+C:\Users\user\source\repos\AddressBook\AddressBook\bin\Debug\net5.0\Newtonsoft.Json.dll
+C:\Users\user\source\repos\AddressBook\AddressBook\obj\Debug\net5.0\AddressBook.csproj.CopyComplete

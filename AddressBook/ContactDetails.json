@@ -1,1 +1,24 @@
-﻿
+﻿{
+    "zoho": [
+        {
+            "firstName": "abc",
+            "lastName": "xyz",
+            "address": "xxxx",
+            "city": "chennai",
+            "state": "Tamil Nadu",
+            "zipCode": "6000018",
+            "phoneNumber": "8667361462"
+        },
+       
+    ],
+    "TVS": [
+        {
+            "firstName": "xyz",
+            "lastName": "abc",
+            "address": "yyy",
+            "city": "madurai",
+            "state": "Tamil Nadu",
+            "zipCode": "625009",
+            "phoneNumber": "9786164316"
+        }
+    ]

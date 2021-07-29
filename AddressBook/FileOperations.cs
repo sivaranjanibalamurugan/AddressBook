@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-
+using System.Reflection;
+using System.Text;
+using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace AddressBook
 {
@@ -11,7 +14,7 @@ namespace AddressBook
     {
         string filepath = @"C:\Users\user\source\repos\AddressBook\AddressBook\AddressBook.txt";
         string jsonFile = @"C:\Users\user\source\repos\AddressBook\AddressBook\ContactDetails.json";
-        string csvFile = @"C:\Users\user\source\repos\AddressBook\AddressBook\ContactDetails.csv";
+
         //method to write the data into the file
         public void WriteIntoFile(Dictionary<string, List<ContactDetails>> addressDictionary)
         {
@@ -65,65 +68,7 @@ namespace AddressBook
         public void WriteIntoJsonFile(Dictionary<string, List<ContactDetails>> contactList)
         {
             File.WriteAllText(jsonFile, JsonConvert.SerializeObject(contactList));
-            WriteIntoCSVFile(contactList);
         }
-
-        public void WriteIntoCSVFile(Dictionary<string, List<ContactDetails>> contactList)
-        {
-            //create stream writer stream and pass the csv file path
-            using (StreamWriter writer = new StreamWriter(csvFile))
-            {
-                //creating the csv writer path
-                using (var csvWriter = new CsvWriter(writer, CultureInfo.InvariantCulture))
-                {
-                    //create teh feild as dictionary name
-                    csvWriter.WriteField("DictionaryName");
-                    //create the header that are the properties of the contact list
-                    csvWriter.WriteHeader<ContactDetails>();
-                    csvWriter.NextRecord();
-
-                    foreach (var l in contactList)
-                    {
-                        string dic = l.Key;
-                        foreach (var list in l.Value)
-                        {
-                            //write the list as record in the file
-                            csvWriter.WriteField(dic);
-                            csvWriter.WriteRecord(list);
-                            csvWriter.NextRecord();
-                        }
-                    }
-                }
-            }
-        }
-        public Dictionary<string, List<ContactDetails>> ReadFromCSVFile()
-        {
-            //read all the file from the list
-            string[] record = File.ReadAllLines(csvFile);
-            Dictionary<string, List<ContactDetails>> contactList = new Dictionary<string, List<ContactDetails>>();
-            List<ContactDetails> list;
-            //to store in the dictioary skip the header
-            foreach (string data in record.Skip(1))
-            {
-                string[] fields = data.Split(",");
-                //create new list if list is not available
-                if (contactList.ContainsKey(fields[0]))
-                {
-                    list = contactList[fields[0]];
-                    list.Add(new ContactDetails(fields[1], fields[2], fields[3], fields[4], fields[5], fields[6], fields[7]));
-                }
-                //else store in the existing list
-                else
-                {
-                    list = new List<ContactDetails>();
-                    list.Add(new ContactDetails(fields[1], fields[2], fields[3], fields[4], fields[5], fields[6], fields[7]));
-                    contactList.Add(fields[0], list);
-                }
-            }
-            return contactList;
-        }
-
     }
 }
-    
 
