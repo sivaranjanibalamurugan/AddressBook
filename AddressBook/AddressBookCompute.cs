@@ -8,31 +8,21 @@ namespace AddressBook
 {
     class AddressBookCompute
     {
-        private LinkedList<ContactDetails> contactList;
+        //private List<ContactDetails> contactList;
         private List<ContactDetails> stateList;
         private List<ContactDetails> cityList;
         bool AVAILABLE = false;
-
-        //creates the object linked list 
-        public AddressBookCompute()
-        {
-            this.contactList = new LinkedList<ContactDetails>();
-        }
-
         //this method add details to the address book
-        public void AddContactDetails(string firstName, string lastName, string address, string city, string state, long zipCode, long phoneNumber, Dictionary<string, List<ContactDetails>> stateDic, Dictionary<string, List<ContactDetails>> cityDic)
+        public void AddContactDetails(string firstName, string lastName, string address, string city, string state, string zipCode, string phoneNumber, Dictionary<string, List<ContactDetails>> stateDic, Dictionary<string, List<ContactDetails>> cityDic, List<ContactDetails> contactList)
         {
             //find the data that already has the same value 
-            ContactDetails details = this.contactList.Find(
-                
-                
-                x => x.firstName.Equals(firstName));
+            ContactDetails details = contactList.Find(x => x.firstName.Equals(firstName));
 
             //if no sush record is available then add the data
             if (details == null)
             {
                 ContactDetails contactDetails = new ContactDetails(firstName, lastName, address, city, state, zipCode, phoneNumber);
-                this.contactList.AddFirst(contactDetails);
+                contactList.Add(contactDetails);
                 if (!stateDic.ContainsKey(state))
                 {
 
@@ -63,24 +53,22 @@ namespace AddressBook
             {
                 Console.WriteLine("record with same name as {0} is available in the address book", firstName);
             }
-
-
         }
 
         //calls the display method
-        public void DisplayContact()
+        public static void DisplayContact(List<ContactDetails> contactList)
         {
-            foreach (ContactDetails contact in this.contactList)
+            foreach (ContactDetails contact in contactList)
             {
                 contact.Display();
             }
         }
         //Delete the particular object
-        public void DeleteContact(string name)
+        public void DeleteContact(string name, List<ContactDetails> contactList)
         {
             try
             {
-                this.contactList.Remove(this.contactList.Find(x => x.firstName.Equals(name)));
+                contactList.Remove(contactList.Find(x => x.firstName.Equals(name)));
             }
             catch (Exception e)
             {
@@ -88,15 +76,15 @@ namespace AddressBook
             }
         }
 
-        public void EditContact(string name, long number)
+        public void EditContact(string name, string number, List<ContactDetails> contactList)
         {
             AVAILABLE = false;
             //checks for every object whether the name is equal the given name
-            foreach (ContactDetails contact in this.contactList)
+            foreach (ContactDetails contact in contactList)
             {
                 if (contact.firstName.Equals(name))
                 {
-                    //calls the set detail method
+                    //calls the setdetail method
                     contact.SetDetail(number);
                     AVAILABLE = true;
                     break;
@@ -110,46 +98,31 @@ namespace AddressBook
         }
 
         //method to find the record of persons in particular state or city
-        public static void FindPerson(Dictionary<string, AddressBookCompute> addressDictionary)
+        public static void FindPerson(Dictionary<string, List<ContactDetails>> addressDictionary)
         {
             List<ContactDetails> list = null;
-            string LCName;
+            string SCName;
             //get input from the user
             Console.WriteLine("Enter City or State name:");
-            LCName = Console.ReadLine();
+            SCName = Console.ReadLine();
             foreach (var l in addressDictionary)
             {
                 //in each address book
                 //find all the record with particular state or city value and store it in the new list
-                list = l.Value.contactList.FindAll(x => x.city.Equals(LCName) || x.state.Equals(LCName));
+                list = l.Value.FindAll(x => x.city.Equals(SCName) || x.state.Equals(SCName));
                 if (list.Count > 0)
                 {
                     //if list contatins value display the list
-                    DisplayList(list);
+                    DisplayContact(list);
                 }
             }
 
         }
-        public static void DisplayList(List<ContactDetails> l)
-        {
-            foreach (var data in l)
-            {
-                data.Display();
-            }
-        }
 
-        public static void PrintList(Dictionary<string, List<ContactDetails>> Dic)
-        {
-            foreach (var l in Dic)
-            {
-                Console.WriteLine("Details of person in {0} is", l.Key);
-                foreach (var l1 in l.Value)
-                {
-                    Console.WriteLine("{0} {1}", l1.firstName, l1.lastName);
-                }
 
-            }
-        }
+
+
+        //method to find the number of item in th particular address book
         public static void CountOfPersons(Dictionary<string, List<ContactDetails>> Dic)
         {
             foreach (var l in Dic)
@@ -157,6 +130,7 @@ namespace AddressBook
                 Console.WriteLine("Total number of person in {0} is: {1}", l.Key, l.Value.Count);
             }
         }
+        //method to sort data in the list based on zipcode
         public static void SortData(Dictionary<string, List<ContactDetails>> Dic)
         {
             //store the result inthe list and display the result
@@ -168,14 +142,14 @@ namespace AddressBook
                     list.Add(i);
                 }
             }
-           
+            
             Console.WriteLine("\nDisplaying the list based on zipcode");
             //display the sorted value based on city
             foreach (var i in list.OrderBy(detail => detail.zipCode))
             {
                 i.Display();
             }
-          
+           
             Console.WriteLine("\nDisplaying the list based on state");
             //display the sorted value based on city
             foreach (var i in list.OrderBy(detail => detail.state))
@@ -193,4 +167,3 @@ namespace AddressBook
         }
     }
 }
-
