@@ -18,7 +18,7 @@ namespace AddressBook
         public string city { get; set; }
         public string state { get; set; }
         public string zipCode { get; set; }
-        public long number { get; set; }
+        public string number { get; set; }
         public string emailAddress { get; set; }
 
         //constructor that gets user detail and store it in the current object
@@ -38,7 +38,7 @@ namespace AddressBook
         }
 
         //method sets the value 
-        public void SetDetail(long number)
+        public void SetDetail(string number)
         {
             this.number = number;
         }

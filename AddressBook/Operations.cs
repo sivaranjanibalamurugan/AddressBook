@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AddressBook
 {
-    class Operations
+    public class Operations
     {
         Dictionary<string, List<ContactDetails>> addressDictionary;
         public Dictionary<string, List<ContactDetails>> stateDic;
@@ -255,17 +255,28 @@ namespace AddressBook
                 return default;
             }
         }
-
         public List<ContactDetails> RetrivingDataFromDataBase()
         {
             DataBaseOperation operation = new DataBaseOperation();
             List<ContactDetails> detail = operation.ReadFromDataBase();
             return detail;
         }
-        public int updateContact(int id, string firstName, long phoneNumber)
+        public int updateContact(int id, string firstName, long number)
         {
-            int res = new DataBaseOperation().EditContactDetail(id, firstName, phoneNumber);
+            int res = new DataBaseOperation().EditContactDetail(id, firstName, number);
             return res;
         }
-    }
+        public List<ContactDetails> RetrivingDataBasedOnDate(DateTime startDate, DateTime endDate)
+        {
+            DataBaseOperation operation = new DataBaseOperation();
+            List<ContactDetails> detail = operation.RetriveBasedOnDate(startDate, endDate);
+            return detail;
+        }
+        public List<ContactDetails> RetrivingDataBasedOnStateCity(string state, string city)
+        {
+            DataBaseOperation operation = new DataBaseOperation();
+            List<ContactDetails> detail = operation.RetriveBasedOnStateOrCity(state, city);
+            return detail;
+        }
+    }   
 }
