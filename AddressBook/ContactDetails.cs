@@ -11,25 +11,19 @@ namespace AddressBook
     /// </summary>
     public class ContactDetails
     {
-        public string firstName;
-        public string lastName;
-        public string address;
-        public string city;
-        public string state;
-        public long zipCode;
-        public long phoneNumber;
+        public int personId { get; set; }
+        public string firstName { get; set; }
+        public string lastName { get; set; }
+        public string address { get; set; }
+        public string city { get; set; }
+        public string state { get; set; }
+        public string zipCode { get; set; }
+        public long number { get; set; }
+        public string emailAddress { get; set; }
 
         //constructor that gets user detail and store it in the current object
-        public ContactDetails(string firstName, string lastName, string address, string city, string state, long zipCode, long phoneNumber)
-        {
-            this.firstName = firstName;
-            this.lastName = lastName;
-            this.address = address;
-            this.city = city;
-            this.state = state;
-            this.zipCode = zipCode;
-            this.phoneNumber = phoneNumber;
-        }
+
+
 
         //it displays the details of the address book
         public void Display()
@@ -39,14 +33,14 @@ namespace AddressBook
             Console.WriteLine("City: {0}", this.city);
             Console.WriteLine("State:{0}", this.state);
             Console.WriteLine("Zipcode:{0}", this.zipCode);
-            Console.WriteLine("phone number:{0}", this.phoneNumber);
+            Console.WriteLine("phone number:{0}", this.number);
 
         }
 
         //method sets the value 
         public void SetDetail(long number)
         {
-            this.phoneNumber = number;
+            this.number = number;
         }
 
     }
