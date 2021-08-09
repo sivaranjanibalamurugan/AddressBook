@@ -185,7 +185,7 @@ namespace AddressBook
                 try
                 {
                     //executing the query
-                    string AddressInsertion = "insert into AddressBook(firstName,lastName,phoneNumber,address,city,state,email,zipCode,date_added) values ('" + details.firstName + "','" + details.lastName + "'," + Convert.ToDouble(details.phoneNumber) + ",'" + details.address + "','" + details.city + "','" + details.state + "','" + details.emailAddress + "'," + Convert.ToDouble(details.zipCode) + ",'" + details.addedDate + "')";
+                    string AddressInsertion = "insert into AddressBook(firstName,lastName,phoneNumber,address,city,state,email,zipCode,date_added) values ('" + details.firstName + "','" + details.lastName + "'," + Convert.ToDouble(details.number) + ",'" + details.address + "','" + details.city + "','" + details.state + "','" + details.emailAddress + "'," + Convert.ToDouble(details.zipCode) + ",'" + details.addedDate + "')";
                     string TypeInsertion = "insert into ContactAddress(personId,typeId) values(" + details.personId + "," + details.typeId + ")";
                     string addressBookNameInsertion = "insert into AddressBookContact(personId,addressBookId) values (" + details.personId + "," + details.addressBookId + ")";
                     new SqlCommand(AddressInsertion, sqlConnection, transaction).ExecuteNonQuery();
@@ -208,7 +208,24 @@ namespace AddressBook
                 }
             }
         }
+        //UC-21 Adding multiple contact to list using thread
+        public List<ContactDetails> AddingMultipleData(List<ContactDetails> contacts)
+        {
+            contacts.ForEach(contactDetail => {
+                Task thread = new Task(() =>
+                {
+                    Console.WriteLine("Contact begin added" + contactDetail.firstName);
+                    WriteIntoDataBase(contactDetail);
+                    Console.WriteLine("Contact added:" + contactDetail.firstName);
+                });
+                thread.Start();
+            });
+            contacts = ReadFromDataBase();
+            return contacts;
+        }
+
     }
 }
+
 
 
