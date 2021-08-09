@@ -26,7 +26,7 @@ namespace AddressBook
         }
         interface DatabaseReadWrite
         {
-            void WriteIntoDataBase(ContactDetails details);
+            int WriteIntoDataBase(ContactDetails details);
             List<ContactDetails> ReadFromDataBase();
         }
 
@@ -46,7 +46,7 @@ namespace AddressBook
                         writer.WriteLine("AddressBook Name:" + l.Key);
                         foreach (var list in l.Value)
                         {
-                            string s = "Name:" + list.firstName + " " + list.lastName + " Address:" + list.address + " City:" + list.city + " State:" + list.state + " Zipcode:" + list.zipCode + " Ph.No:" + list.phoneNumber;
+                            string s = "Name:" + list.firstName + " " + list.lastName + " Address:" + list.address + " City:" + list.city + " State:" + list.state + " Zipcode:" + list.zipCode + " Ph.No:" + list.number;
                             writer.WriteLine(s);
                         }
                         writer.WriteLine();
@@ -77,6 +77,6 @@ namespace AddressBook
                 }
             }
         }
+
     }
 }
-    

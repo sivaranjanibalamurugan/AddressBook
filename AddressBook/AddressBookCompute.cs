@@ -22,7 +22,7 @@ namespace AddressBook
             if (details == null)
             {
                
-                contactList.Add(contactDetails);
+                contactList.Add(ContactDetails);
                 if (!stateDic.ContainsKey(state))
                 {
 
@@ -33,19 +33,19 @@ namespace AddressBook
                 else
                 {
                     List<ContactDetails> c = stateDic[state];
-                    c.Add(contactDetails);
+                    c.Add(ContactDetails);
                 }
                 if (!cityDic.ContainsKey(city))
                 {
 
                     cityList = new List<ContactDetails>();
-                    cityList.Add(contactDetails);
+                    cityList.Add(ContactDetails);
                     cityDic.Add(city, cityList);
                 }
                 else
                 {
                     List<ContactDetails> c = cityDic[city];
-                    c.Add(contactDetails);
+                    c.Add(ContactDetails);
                 }
             }
             //else print record is already available
@@ -165,5 +165,9 @@ namespace AddressBook
 
         }
 
+        internal void AddContactDetails(Dictionary<string, List<ContactDetails>> stateRecord, Dictionary<string, List<ContactDetails>> cityRecord, List<ContactDetails> list, ContactDetails contactDetails, string firstName, string state, string city)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

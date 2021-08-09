@@ -20,6 +20,8 @@ namespace AddressBook
         public string zipCode { get; set; }
         public string number { get; set; }
         public string emailAddress { get; set; }
+        public int typeId { get; set; }
+        public int addressBookId { get; set; }
 
         //constructor that gets user detail and store it in the current object
 
