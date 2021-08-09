@@ -11,6 +11,31 @@
           "lib/net5.0/CsvHelper.dll": {}
         }
       },
+      "IdentityModel/3.6.1": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "11.0.2",
+          "System.Text.Encodings.Web": "4.4.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/IdentityModel.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/IdentityModel.dll": {}
+        }
+      },
+      "LibLog/4.2.6": {
+        "type": "package"
+      },
+      "Microsoft.CSharp/4.4.1": {
+        "type": "package",
+        "compile": {
+          "ref/netcoreapp2.0/_._": {}
+        },
+        "runtime": {
+          "lib/netcoreapp2.0/_._": {}
+        }
+      },
       "Microsoft.Extensions.Configuration/5.0.0": {
         "type": "package",
         "dependencies": {
@@ -171,6 +196,31 @@
           "lib/netstandard2.0/Newtonsoft.Json.dll": {}
         }
       },
+      "RestSharp/106.2.2": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/RestSharp.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/RestSharp.dll": {}
+        }
+      },
+      "RestSharp.IdentityModel.Extensions/2.0.1": {
+        "type": "package",
+        "dependencies": {
+          "IdentityModel": "3.6.1",
+          "LibLog": "4.2.6",
+          "Microsoft.CSharp": "4.4.1",
+          "Newtonsoft.Json": "11.0.2",
+          "RestSharp": "106.2.2"
+        },
+        "compile": {
+          "lib/netstandard2.0/RestSharp.IdentityModel.Extensions.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/RestSharp.IdentityModel.Extensions.dll": {}
+        }
+      },
       "runtime.native.System.Data.SqlClient.sni/4.7.0": {
         "type": "package",
         "dependencies": {
@@ -267,6 +317,15 @@
             "rid": "win"
           }
         }
+      },
+      "System.Text.Encodings.Web/4.4.0": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/System.Text.Encodings.Web.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/System.Text.Encodings.Web.dll": {}
+        }
       }
     }
   },
@@ -291,6 +350,103 @@
         "lib/netstandard2.0/CsvHelper.xml",
         "lib/netstandard2.1/CsvHelper.dll",
         "lib/netstandard2.1/CsvHelper.xml"
+      ]
+    },
+    "IdentityModel/3.6.1": {
+      "sha512": "JvpnyoP49cF16sImPcdM0A7keVGs+mpG7KCnJ3c1zOwsxXexhN/hqkZua6Cr/9KZcVw6/wsRQfEgY3QMsjsQpw==",
+      "type": "package",
+      "path": "identitymodel/3.6.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "identitymodel.3.6.1.nupkg.sha512",
+        "identitymodel.nuspec",
+        "lib/net452/IdentityModel.dll",
+        "lib/net452/IdentityModel.xml",
+        "lib/net461/IdentityModel.dll",
+        "lib/net461/IdentityModel.xml",
+        "lib/netstandard1.4/IdentityModel.dll",
+        "lib/netstandard1.4/IdentityModel.xml",
+        "lib/netstandard2.0/IdentityModel.dll",
+        "lib/netstandard2.0/IdentityModel.xml"
+      ]
+    },
+    "LibLog/4.2.6": {
+      "sha512": "z2pUqnrQhd8ti2jsjLVCVlNC5rqynGZvnZtd5Q1OJ0SCUH7WDYS+2fRJWWkTPBwWjdk0qMJA8GO0CIt6hWcDig==",
+      "type": "package",
+      "path": "liblog/4.2.6",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "content/App_Packages/LibLog.4.2/LibLog.cs.pp",
+        "liblog.4.2.6.nupkg.sha512",
+        "liblog.nuspec"
+      ]
+    },
+    "Microsoft.CSharp/4.4.1": {
+      "sha512": "A5hI3gk6WpcBI0QGZY6/d5CCaYUxJgi7iENn1uYEng+Olo8RfI5ReGVkjXjeu3VR3srLvVYREATXa2M0X7FYJA==",
+      "type": "package",
+      "path": "microsoft.csharp/4.4.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/MonoAndroid10/_._",
+        "lib/MonoTouch10/_._",
+        "lib/net45/_._",
+        "lib/netcore50/Microsoft.CSharp.dll",
+        "lib/netcoreapp2.0/_._",
+        "lib/netstandard1.3/Microsoft.CSharp.dll",
+        "lib/netstandard2.0/Microsoft.CSharp.dll",
+        "lib/portable-net45+win8+wp8+wpa81/_._",
+        "lib/win8/_._",
+        "lib/wp80/_._",
+        "lib/wpa81/_._",
+        "lib/xamarinios10/_._",
+        "lib/xamarinmac20/_._",
+        "lib/xamarintvos10/_._",
+        "lib/xamarinwatchos10/_._",
+        "microsoft.csharp.4.4.1.nupkg.sha512",
+        "microsoft.csharp.nuspec",
+        "ref/MonoAndroid10/_._",
+        "ref/MonoTouch10/_._",
+        "ref/net45/_._",
+        "ref/netcore50/Microsoft.CSharp.dll",
+        "ref/netcore50/Microsoft.CSharp.xml",
+        "ref/netcore50/de/Microsoft.CSharp.xml",
+        "ref/netcore50/es/Microsoft.CSharp.xml",
+        "ref/netcore50/fr/Microsoft.CSharp.xml",
+        "ref/netcore50/it/Microsoft.CSharp.xml",
+        "ref/netcore50/ja/Microsoft.CSharp.xml",
+        "ref/netcore50/ko/Microsoft.CSharp.xml",
+        "ref/netcore50/ru/Microsoft.CSharp.xml",
+        "ref/netcore50/zh-hans/Microsoft.CSharp.xml",
+        "ref/netcore50/zh-hant/Microsoft.CSharp.xml",
+        "ref/netcoreapp2.0/_._",
+        "ref/netstandard1.0/Microsoft.CSharp.dll",
+        "ref/netstandard1.0/Microsoft.CSharp.xml",
+        "ref/netstandard1.0/de/Microsoft.CSharp.xml",
+        "ref/netstandard1.0/es/Microsoft.CSharp.xml",
+        "ref/netstandard1.0/fr/Microsoft.CSharp.xml",
+        "ref/netstandard1.0/it/Microsoft.CSharp.xml",
+        "ref/netstandard1.0/ja/Microsoft.CSharp.xml",
+        "ref/netstandard1.0/ko/Microsoft.CSharp.xml",
+        "ref/netstandard1.0/ru/Microsoft.CSharp.xml",
+        "ref/netstandard1.0/zh-hans/Microsoft.CSharp.xml",
+        "ref/netstandard1.0/zh-hant/Microsoft.CSharp.xml",
+        "ref/netstandard2.0/Microsoft.CSharp.dll",
+        "ref/netstandard2.0/Microsoft.CSharp.xml",
+        "ref/portable-net45+win8+wp8+wpa81/_._",
+        "ref/win8/_._",
+        "ref/wp80/_._",
+        "ref/wpa81/_._",
+        "ref/xamarinios10/_._",
+        "ref/xamarinmac20/_._",
+        "ref/xamarintvos10/_._",
+        "ref/xamarinwatchos10/_._",
+        "useSharedDesignerContext.txt",
+        "version.txt"
       ]
     },
     "Microsoft.Extensions.Configuration/5.0.0": {
@@ -570,6 +726,32 @@
         "packageIcon.png"
       ]
     },
+    "RestSharp/106.2.2": {
+      "sha512": "PEz5Wy6W7phha9pvvxmIntYb2tQTvWwm4G0JlOMFApBtzNfFLxLqJxhZG7Fd+78JJvyRiqGGQtjtW6Hc86PTag==",
+      "type": "package",
+      "path": "restsharp/106.2.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net452/RestSharp.dll",
+        "lib/netstandard2.0/RestSharp.dll",
+        "restsharp.106.2.2.nupkg.sha512",
+        "restsharp.nuspec"
+      ]
+    },
+    "RestSharp.IdentityModel.Extensions/2.0.1": {
+      "sha512": "KeKsoFhZ6GcxsW7v5A1wRthsAJMrpv2uXqD9z3YI+0o4Bc9/CzHEbCBJPHSCm/rSMXJqPqfGF+lM35S0jJukNQ==",
+      "type": "package",
+      "path": "restsharp.identitymodel.extensions/2.0.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net452/RestSharp.IdentityModel.Extensions.dll",
+        "lib/netstandard2.0/RestSharp.IdentityModel.Extensions.dll",
+        "restsharp.identitymodel.extensions.2.0.1.nupkg.sha512",
+        "restsharp.identitymodel.extensions.nuspec"
+      ]
+    },
     "runtime.native.System.Data.SqlClient.sni/4.7.0": {
       "sha512": "9kyFSIdN3T0qjDQ2R0HRXYIhS3l5psBzQi6qqhdLz+SzFyEy4sVxNOke+yyYv8Cu8rPER12c3RDjLT8wF3WBYQ==",
       "type": "package",
@@ -818,6 +1000,25 @@
         "useSharedDesignerContext.txt",
         "version.txt"
       ]
+    },
+    "System.Text.Encodings.Web/4.4.0": {
+      "sha512": "l/tYeikqMHX2MD2jzrHDfR9ejrpTTF7wvAEbR51AMvzip1wSJgiURbDik4iv/w7ZgytmTD/hlwpplEhF9bmFNw==",
+      "type": "package",
+      "path": "system.text.encodings.web/4.4.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/netstandard1.0/System.Text.Encodings.Web.dll",
+        "lib/netstandard1.0/System.Text.Encodings.Web.xml",
+        "lib/netstandard2.0/System.Text.Encodings.Web.dll",
+        "lib/netstandard2.0/System.Text.Encodings.Web.xml",
+        "system.text.encodings.web.4.4.0.nupkg.sha512",
+        "system.text.encodings.web.nuspec",
+        "useSharedDesignerContext.txt",
+        "version.txt"
+      ]
     }
   },
   "projectFileDependencyGroups": {
@@ -825,6 +1026,7 @@
       "CsvHelper >= 27.1.1",
       "Microsoft.Extensions.Configuration.UserSecrets >= 5.0.0",
       "Newtonsoft.Json >= 13.0.1",
+      "RestSharp.IdentityModel.Extensions >= 2.0.1",
       "System.Data.SqlClient >= 4.8.2"
     ]
   },
@@ -883,6 +1085,10 @@
           "Newtonsoft.Json": {
             "target": "Package",
             "version": "[13.0.1, )"
+          },
+          "RestSharp.IdentityModel.Extensions": {
+            "target": "Package",
+            "version": "[2.0.1, )"
           },
           "System.Data.SqlClient": {
             "target": "Package",

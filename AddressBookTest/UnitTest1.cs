@@ -68,5 +68,20 @@ namespace AddressBookTest
             contactList = operations.AddMultiplecontactToDataBase(contactList);
             Assert.AreEqual(expected, contactList);
         }
+        //Uc22 retriving data from json server
+        [TestMethod]
+        public void OnCallingGetAPI_ReturnsContacts()
+        {
+            List<ContactDetails> actual = new AddressBookJSONServer().ReadFromServer();
+            Assert.AreEqual(1, actual.Count);
+        }
+        //Adding data to json server
+        [TestMethod]
+        public void OnCallingPOSTAPI_AddMethodToServer()
+        {
+            List<ContactDetails> contactDetails = new List<ContactDetails> { new ContactDetails { personId = 17, firstName = "siva", lastName = "ranjani", address = "AK road", city = "madurai", state = "Tamil Nadu", zipCode = "741258", number = "8741203659", emailAddress = "ssr@gmail.com", typeId = 2, addressBookId = 1, addedDate = "2021-07-13" } };
+            new AddressBookJSONServer().AddingMultipleContactToServer(contactDetails);
+
+        }
     }
 }

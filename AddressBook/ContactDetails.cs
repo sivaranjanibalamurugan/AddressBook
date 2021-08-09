@@ -11,6 +11,8 @@ namespace AddressBook
     /// </summary>
     public class ContactDetails
     {
+        
+
         public int personId { get; set; }
         public string firstName { get; set; }
         public string lastName { get; set; }
@@ -22,8 +24,10 @@ namespace AddressBook
         public string emailAddress { get; set; }
         public int typeId { get; set; }
         public int addressBookId { get; set; }
+        //for json server
+        public int id { get; set; }
 
-        //constructor that gets user detail and store it in the current object
+       
 
 
 
