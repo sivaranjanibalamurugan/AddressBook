@@ -121,9 +121,6 @@ namespace AddressBook
 
         }
 
-
-
-
         //method to find the number of item in th particular address book
         public static void CountOfPersons(Dictionary<string, List<ContactDetails>> Dic)
         {
@@ -166,6 +163,16 @@ namespace AddressBook
                 i.Display();
             }
 
+        }
+
+        internal void EditContact(string name, string number, List<ContactDetails> contactList)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal void AddContactDetails(Dictionary<string, List<ContactDetails>> stateRecord, Dictionary<string, List<ContactDetails>> cityRecord, List<ContactDetails> list, ContactDetails contactDetails, string firstName, string state, string city)
+        {
+            throw new NotImplementedException();
         }
     }
 }

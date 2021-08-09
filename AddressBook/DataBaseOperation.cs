@@ -9,7 +9,7 @@ namespace AddressBook
 {
     class DataBaseOperation : DatabaseReadWrite
     {
-        public static string connectionString = @"Data Source=(localdb)\ProjectsV13;Initial Catalog=AddressBookService";
+        public static string connectionString = @"Data Source=(localdb)\ProjectsV13;Initial Catalog=Addressbook_services";
         SqlConnection sqlConnection = new SqlConnection(connectionString);
         public List<ContactDetails> ReadFromDataBase()
         {
@@ -36,7 +36,7 @@ namespace AddressBook
                         contact.city = reader.GetString(4);
                         contact.state = reader.GetString(5);
                         contact.zipCode = reader.GetInt64(6).ToString();
-                        contact.phoneNumber = reader.GetInt64(7).ToString();
+                        contact.number = reader.GetInt64(7).ToString();
                         contact.emailAddress = reader.GetString(8);
                         detail.Add(contact);
                     }
@@ -54,8 +54,38 @@ namespace AddressBook
             }
 
         }
+        public int EditContactDetail(int id, string firstName, long phoneNumber)
+        {
+            using (sqlConnection)
+                try
+                {
+                    //passing query in terms of stored procedure
+                    SqlCommand sqlCommand = new SqlCommand("dbo.EditPhoneNumber", sqlConnection);
+                    //passing command type as stored procedure
+                    sqlCommand.CommandType = System.Data.CommandType.StoredProcedure;
+                    sqlConnection.Open();
+                    //adding the values to the stored procedure
+                    sqlCommand.Parameters.AddWithValue("@firstName", firstName);
+                    sqlCommand.Parameters.AddWithValue("@phoneNumber", phoneNumber);
+                    sqlCommand.Parameters.AddWithValue("@id", id);
+                    int result = sqlCommand.ExecuteNonQuery();
+                    //if result is greater than 0 then record is inserted
+                    if (result > 0)
+                        return 1;
+                    else
+                        return 0;
+                }
+                catch (Exception e)
+                {
+                    throw new Exception(e.Message);
+                }
+                finally
+                {
+                    sqlConnection.Close();
+                }
+        }
 
-        public void WriteIntoDataBase(ContactDetails details)
+            public void WriteIntoDataBase(ContactDetails details)
         {
             throw new NotImplementedException();
         }
@@ -63,6 +93,6 @@ namespace AddressBook
     }
 
 }
-{
-    }
-}
+
+    
+
