@@ -13,7 +13,7 @@ namespace AddressBook
         private List<ContactDetails> cityList;
         bool AVAILABLE = false;
         //this method add details to the address book
-        public void AddContactDetails(string firstName, string lastName, string address, string city, string state, long zipCode, long phoneNumber, Dictionary<string, List<ContactDetails>> stateDic, Dictionary<string, List<ContactDetails>> cityDic, List<ContactDetails> contactList)
+        public void AddContactDetails(string firstName, string lastName, string address, string city, string state, long zipCode, long number, Dictionary<string, List<ContactDetails>> stateDic, Dictionary<string, List<ContactDetails>> cityDic, List<ContactDetails> contactList)
         {
             //find the data that already has the same value 
             ContactDetails details = contactList.Find(x => x.firstName.Equals(firstName));
@@ -21,13 +21,13 @@ namespace AddressBook
             //if no sush record is available then add the data
             if (details == null)
             {
-                ContactDetails contactDetails = new ContactDetails(firstName, lastName, address, city, state, zipCode, phoneNumber);
+               
                 contactList.Add(contactDetails);
                 if (!stateDic.ContainsKey(state))
                 {
 
                     stateList = new List<ContactDetails>();
-                    stateList.Add(contactDetails);
+                    stateList.Add(ContactDetails);
                     stateDic.Add(state, stateList);
                 }
                 else
@@ -165,14 +165,5 @@ namespace AddressBook
 
         }
 
-        internal void EditContact(string name, string number, List<ContactDetails> contactList)
-        {
-            throw new NotImplementedException();
-        }
-
-        internal void AddContactDetails(Dictionary<string, List<ContactDetails>> stateRecord, Dictionary<string, List<ContactDetails>> cityRecord, List<ContactDetails> list, ContactDetails contactDetails, string firstName, string state, string city)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
